@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="/stylesheets/stylesheet.css">
     <script src="https://kit.fontawesome.com/d28bf72700.js" crossorigin="anonymous"></script>
     <title>Post</title>
 </head>
@@ -12,30 +12,47 @@
 
     <header>
         <div class="navbar">
-            <div class="navbar-name">Manabu</div>
+            <div class="navbar-name">
+                Manabu
+                <a href="/"></a>
+            </div>
             <div class="navbar-right">
-                <div class="navbar-item messages"><i class="fa-solid fa-envelope"></i></div>
-                <div class="navbar-item settings"><i class="fa-solid fa-gear"></i></div>
+                <div class="navbar-item add-post">
+                    <a href="addpost"></a>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="post">
-        <div class="post-title">
-            <h1>How do I center a div?</h1>
+
+        <% if (post[0].resolved == 0) { %>
+            <div class="post-title unresolved-banner">
+        <% } else { %>
+            <div class="post-title resolved-banner">
+        <% } %>
+        
+            <h1 class="main-header"><%= post[0].title %></h1>
             <div class="post-header-details">
-                <div class="poster">Posted by: Coo Haa</div>
-                <div class="subject">Subject: Computer Science</div>
-                <div class="status">Status: Unresolved</div>
+                <div class="poster">Posted by: <%= post[0].username %></div>
+                <div class="subject">Subject: <%= post[0].subject %></div>
+                <div class="status">Status: 
+                    <% if (post[0].resolved == 0) { %>
+                        Unresolved
+                    <% } else { %>
+                        Resolved
+                    <% } %>
+                </div>
             </div>
         </div>
     
         <div class="body">
             <div class="body-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <%= post[0].body %>
             </div>
             <div class="likes">
-                <div class="like-count">100</div>
+                <div class="like-count"><%= post[0].likes %></div>
                 <i class="fa-solid fa-thumbs-up"></i>
             </div>
         </div>

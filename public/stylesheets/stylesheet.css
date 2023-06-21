@@ -2,6 +2,8 @@
 
 body {
     box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
     background-color: #f6f6f6;
@@ -29,6 +31,16 @@ header {
     color: #FFFFFF;
     font-size: 3em;
     padding: 0.1em 0 0.1em 0.1em;
+    position: relative;
+}
+
+.navbar-name a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .navbar-item .fa-solid {
@@ -39,6 +51,17 @@ header {
 
 .navbar-item .fa-solid:hover {
     color: #e3e3e3;
+}
+
+.navbar-item a {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+h1.main-header {
+    margin: 20px;
 }
 
 .board {
@@ -59,10 +82,6 @@ header {
     border-bottom: 1px solid #C7C7C7;
     width: 100vw;
     max-height: 1px;
-}
-
-h1.column-header {
-    margin: 20px;
 }
 
 ul.question-list {
@@ -138,22 +157,30 @@ ul.question-list {
 }
 
 .unresolved-status {
-    color: #ff7e7e;
+    color: #d86c4b;
+}
+
+.resolved-status {
+    color: #77a247;
 }
 
 .post-title {
-    background-color: #d86c4b;
     margin-bottom: 20px;
 }
 
-.post-title * {
-    margin: 0.5em;
+.post-title.unresolved-banner {
+    background-color: #d86c4b;
+}
+
+.post-title.resolved-banner {
+    background-color: #77a247;
 }
 
 .post-header-details {
     display: flex;
     width: 50vw;
     justify-content: space-between;
+    margin-left: 20px;
 }
 
 .post-header-details * {
@@ -162,7 +189,7 @@ ul.question-list {
 
 .body {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
     margin: 20px;
 }
@@ -184,7 +211,7 @@ ul.question-list {
 }
 
 .reply .poster {
-    margin: 1em;
+    margin: 20px;
 
 }
 
@@ -203,7 +230,7 @@ ul.question-list {
     margin: 1em;
 }
 
-.reply-entry-area button {
+button {
     background-color: #283618;
     color: #FFFFFF;
     font-size: large;
@@ -215,4 +242,29 @@ ul.question-list {
 
 .reply-entry-area button:hover {
     background-color: #3c5026;
+}
+
+.add-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > * {
+    padding: 10px;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.form-connect, .form-wrapper-hor {
+    display: flex;
+    align-items: center;
+}
+
+.form-full-flex, .form-full-flex input {
+    flex-grow: 3;
 }
