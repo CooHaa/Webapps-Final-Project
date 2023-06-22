@@ -11,18 +11,7 @@
 <body>
 
     <header>
-        <div class="navbar">
-            <div class="navbar-name">
-                Manabu
-                <a href="/"></a>
-            </div>
-            <div class="navbar-right">
-                <div class="navbar-item add-post">
-                    <a href="addpost"></a>
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-            </div>
-        </div>
+        <%- include('partials/navbar') %>
     </header>
 
     <div class="post">
@@ -35,7 +24,7 @@
         
             <h1 class="main-header"><%= post[0].title %></h1>
             <div class="post-header-details">
-                <div class="poster">Posted by: <%= post[0].username %></div>
+                <div class="poster">Posted by: <%= post[0].poster_username %></div>
                 <div class="subject">Subject: <%= post[0].subject %></div>
                 <div class="status">Status: 
                     <% if (post[0].resolved == 0) { %>
@@ -54,35 +43,50 @@
             <div class="likes">
                 <div class="like-count"><%= post[0].likes %></div>
                 <i class="fa-solid fa-thumbs-up"></i>
+                <a href="/post/<%= post[0].post_id %>/like"></a>
             </div>
         </div>
     </div>
 
     <div class="horizontal-divider"></div>
 
-    <div class="reply">
-        <div class="poster"><b>Reply by:</b> Terror Incarnate</div>
-        <div class="body">
-            <div class="body-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-            <div class="likes">
-                <div class="like-count">100</div>
-                <i class="fa-solid fa-thumbs-up"></i>
-            </div>
-        </div>
+    <% for( let i = 0; i < replies.length; i++ ) { %>
 
+        <div class="reply">
+            <div class="poster"><b>Reply by:</b> <%= replies[i].poster_username %> </div>
+            <div class="body">
+                <div class="body-text">
+                    <%= replies[i].body %>
+                </div>
+                <div class="likes">
+                    <div class="like-count"><%= replies[i].likes %></div>
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <a href="/post/<%= post[0].post_id %>/<%= replies[i].reply_id %>/like"></a>
+                </div>
+            </div>
+    
+            
+        </div>
+    
+        <div class="horizontal-divider"></div>
         
-    </div>
+    <% } %>
 
-    <div class="horizontal-divider"></div>
+    
 
     <div class="reply-entry">
         <h2>Have a response?</h2>
-        <div class="reply-entry-area">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <button>Send</button>
-        </div>
+
+        <% if (isLoggedIn) { %>
+            <form action="/post/<%=post[0].post_id %>/reply" method="post">
+                <div class="reply-entry-area">
+                    <textarea name="reply_body" id="reply_body" cols="30" rows="10"></textarea>
+                    <button>Send</button>
+                </div>
+            </form>
+        <% } else { %>
+            <h2><em>Please log in to reply to posts.</em></h2>
+        <% } %>
 
     </div>
 </body>

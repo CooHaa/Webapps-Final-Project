@@ -1,0 +1,26 @@
+<div class="navbar">
+    <div class="navbar-name">
+        Manabu
+        <a href="/"></a>
+    </div>
+    <div class="navbar-right">
+        <% if (isLoggedIn) { %>
+            <div class="navbar-item add-post">
+                <a href="/addpost"></a>
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="navbar-item logout">
+                <a href="/logout"></a>
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+            <div class="navbar-item">
+                <h3 class="navbar-username">Logged in as: <%= user.name %></h3>
+            </div>
+        <% } else { %>
+            <div class="navbar-item login">
+                <a href="/login"></a>
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </div>
+        <% } %>
+    </div>
+</div>

@@ -11,37 +11,22 @@
 <body>
 
     <header>
-        <div class="navbar">
-            <div class="navbar-name">
-                Manabu
-                <a href="/"></a>
-            </div>
-            <div class="navbar-right">
-                <div class="navbar-item add-post">
-                    <a href="addpost"></a>
-                    <i class="fa-solid fa-plus"></i>
-                </div>
-            </div>
-        </div>
+        <%- include('partials/navbar') %>
     </header>
 
     <h1 class="main-header">Submit a post</h1>
 
-    <form action="" method="post" class="add-post">
+    <form action="/addpost" method="post" class="add-post">
         <div class="form-wrapper">
-            <div class="form-wrapper-hor">
-                <div class="form-connect form-full-flex">
-                    <label for="post-title-submit"><h3>Post Title</h3></label>
-                    <input type="text" name="post-title-submit" id="post-title-submit">
-                </div>
-            </div>
+            <label for="title"><h3>Post Title</h3></label>
+            <input type="text" name="title" id="title">
+            <label for="subject"><h3>Post Subject</h3></label>
+            <input type="text" name="subject" id="subject">
         </div>
         <div class="form-wrapper">
-            <label for="post-body-submit"><h3>Post Body</h3></label>
-            <textarea name="post-body-submit" id="post-body-submit" cols="30" rows="10"></textarea>
+            <label for="body"><h3>Post Body</h3></label>
+            <textarea name="body" id="body" cols="30" rows="10"></textarea>
         </div>
-
-
 
         <button>Submit</button>
 
